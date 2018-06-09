@@ -37,6 +37,16 @@ app.get("/chirps", function(req, res) {
 });
 
 //Create new chirp
+app.post("/chirps", function(req, res) {
+  // Step 1: Retrieve new chirp from the form submission
+  var newChirp = req.body;
+
+  // Step 2: Save new chirp to the DB
+  models.Chirp.create(newChirp).then(function() {
+    // Step 3: Redirect user to show all chirps page
+    res.redirect("/chirps");
+  });
+});
 
 //Get specific chirp
 
