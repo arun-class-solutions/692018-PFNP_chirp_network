@@ -26,6 +26,15 @@ app.get("/", function(req, res) {
 });
 
 //Get all chirps
+app.get("/chirps", function(req, res) {
+  // Step 1: Retrieve all chirps from DB
+  models.Chirp.findAll().then(function(chirps) {
+    // Step 2: Build HTML based on chirps retrieved
+    // Step 3: Send back HTML to the browser
+    res.render("index", { chirps });
+    // To see site, navigate to http://localhost:3000/chirps
+  });
+});
 
 //Create new chirp
 
