@@ -49,6 +49,14 @@ app.post("/chirps", function(req, res) {
 });
 
 //Get specific chirp
+app.get("/chirps/:id/edit", function(req, res) {
+  // Step 1: Retrieve specific chirp from DB via its ID
+  models.Chirp.findById(req.params.id).then(function(chirp) {
+    // Step 2: Build HTML based on data retrieved
+    // Step 3: Send back HTML to browser
+    res.render("edit", { chirp });
+  });
+});
 
 //Edit a chirp
 
