@@ -59,6 +59,19 @@ app.get("/chirps/:id/edit", function(req, res) {
 });
 
 //Edit a chirp
+app.put("/chirps/:id", function(req, res) {
+  // Step 1: Retrieve updated chirp text from form submission
+  var editedChirp = req.body;
+
+  // Step 2: Find specific chirp via its ID
+  models.Chirp.findById(req.params.id).then(function(chirp) {
+    // Step 3: Update specific chirp with new data
+    chirp.updateAttributes(editedChirp).then(function() {
+      // Step 4: Redirect back to /chirps
+      res.redirect("/chirps");
+    });
+  });
+});
 
 //Delete a chirp
 
